@@ -4,7 +4,7 @@ app_name = "flats"
 app_title = "Flats"
 app_publisher = "qcs"
 app_description = "Flats"
-app_email = "hiraniyas@gmail.com"
+app_email = "hiran@gmail.com"
 app_license = "MIT"
 
 # Includes in <head>
