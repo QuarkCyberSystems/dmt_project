@@ -30,16 +30,16 @@
   },
   {
    "fieldname": "message",
-   "fieldtype": "Data",
+   "fieldtype": "Small Text",
    "label": "Message"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-05-12 18:47:14.518915",
+ "modified": "2023-05-12 22:50:06.391550",
  "modified_by": "Administrator",
  "module": "Flats",
- "name": "Personal Log",
+ "name": "Personal Error Log",
  "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [

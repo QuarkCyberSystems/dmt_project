@@ -50,7 +50,6 @@ def megvii_device_login(device_username, device_url, session_id, h_pass):
 
 # push the personal data to the device
 
-@frappe.whitelist(allow_guest=True)
 def create_personal_id():
 	device_username="admin"
 	device_password="222www"
@@ -58,54 +57,53 @@ def create_personal_id():
 	
 	session_id, h_pass = megvii_login_challenge(device_username, device_password, device_url)
 	status = megvii_device_login(device_username, device_url, session_id, h_pass)
-	
-	media = get_file_path("hiran95b570.jpeg")
-	with open(media, 'rb') as f:
-		contents = f.read()
-		encoded_string = base64.b64encode(contents)
-	
-	en_string=encoded_string.decode('UTF-8')  
-	 
+ 
 	if status == 200:
-		url = device_url + "/api/persons/item"
-		payload = json.dumps({
-			"recognition_type": "staff",
-			"is_admin": 0,
-			"person_name": "arul",
-			"group_list": ["1"],
-			"face_list":[{"idx":0, "data":en_string}],
-			"card_number": "123456425deddswsejf73w25"
-		})
-		headers = {
-			'Content-Type': 'application/json',
-			'Cookie': 'sessionID=' + session_id
-		}
+		doc=frappe.get_doc("Tenants", "DMT-23-Keerthi-00001")
+		tab=doc.id_table
+		for i in range(0, len(tab)):
+      
+			path=tab[i].get("tanent_photo")
+			file_name=frappe.get_all("File", filters={"attached_to_name":"DMT-23-Keerthi-00001", "file_url":tab[i].get("tanent_photo"), "attached_to_field":"tanent_photo"}, fields=["file_name"])
+			send_file=file_name[0].get("file_name")
+   
+			media = get_file_path(send_file)
+			with open(media, 'rb') as f:
+				contents = f.read()
+				encoded_string = base64.b64encode(contents)
+			en_string=encoded_string.decode('UTF-8')  
+			
+			
+			url = device_url + "/api/persons/item"
+			payload = json.dumps({
+				"recognition_type": "staff",
+				"is_admin": 0,
+				"person_name": tab[i].get("person_name"),
+				"group_list": ["1"],
+				"face_list":[{"idx":0, "data":en_string}],
+				"card_number": tab[i].get("id_card_no"),
+			})
+			headers = {
+				'Content-Type': 'application/json',
+				'Cookie': 'sessionID=' + session_id
+			}
 
-		response = requests.request("POST", url, headers=headers, data=payload)
-		json_data = json.loads(response.text)
-		frappe.errprint(json_data['status'])
-		return json_data
+			response = requests.request("POST", url, headers=headers, data=payload)
+			json_data = json.loads(response.text)
+   
+			if(json_data['errors']):
+				err=json_data['errors']
+				doc=frappe.new_doc("Personal Error Log")
+				doc.update({
+					"person_name":tab[i].get("person_name"),
+					"card_number":tab[i].get("id_card_no"),
+					"message":err[0].get("detail")
+				})
+				doc.save(ignore_permissions=True)
+    
+			return json_data
 
-  
-def personal_log(json_data):
 	
-	frappe.errprint(json_data)
-	if(json_data['recognition_type']):
-		doc=frappe.new_doc("Personal Log")
-		doc.update({
-			"person_name":json_data['recognition_type'],
-			"card_number":json_data['person_name'],
-			"message":"Success",
-		})
-		doc.save(ignore_permissions=True)
-	if(json_data['status']==400):
-		doc=frappe.new_doc("Personal Log")
-		doc.update({
-			"person_name":"ds",
-			"card_number":"ewe",
-			"message":json_data['detail']
-		})
-		doc.save(ignore_permissions=True)
  
 # Set third-party server push configuration
 
