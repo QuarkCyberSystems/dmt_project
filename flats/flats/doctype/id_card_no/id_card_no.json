@@ -1,0 +1,56 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:id_card_no",
+ "creation": "2023-05-09 13:22:26.085685",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "id_card_no",
+  "id_status"
+ ],
+ "fields": [
+  {
+   "fieldname": "id_card_no",
+   "fieldtype": "Data",
+   "label": "ID Card No",
+   "unique": 1
+  },
+  {
+   "default": "Active",
+   "fieldname": "id_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "ID Status",
+   "options": "Active\nInactive"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-05-12 16:51:42.922632",
+ "modified_by": "Administrator",
+ "module": "Flats",
+ "name": "ID Card No",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

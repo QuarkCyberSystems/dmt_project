@@ -113,23 +113,23 @@ app_license = "MIT"
 # Scheduled Tasks
 # ---------------
 
-# scheduler_events = {
-#	"all": [
-#		"flats.tasks.all"
-#	],
-#	"daily": [
-#		"flats.tasks.daily"
-#	],
-#	"hourly": [
-#		"flats.tasks.hourly"
-#	],
-#	"weekly": [
-#		"flats.tasks.weekly"
-#	],
-#	"monthly": [
-#		"flats.tasks.monthly"
-#	],
-# }
+scheduler_events = {
+	# "all": [
+	# 	"flats.tasks.all"
+	# ],
+	"daily": [
+		"flats.flats.doctype.tenants.tenants.contract_expiry"
+	],
+	"hourly": [
+		"flats.bio_metric.bio_login.access_record"
+	],
+	# "weekly": [
+	# 	"flats.tasks.weekly"
+	# ],
+	# "monthly": [
+	# 	"flats.tasks.monthly"
+	# ],
+}
 
 # Testing
 # -------

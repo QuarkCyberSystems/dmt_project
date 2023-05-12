@@ -1,0 +1,151 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "DMT-.YY.-.tenant.-.#####",
+ "creation": "2023-05-09 13:05:30.568871",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "tenant",
+  "apartment",
+  "maximum_allowed_registration",
+  "section_break_ahd1i",
+  "tenant_status",
+  "contract_expiry",
+  "number_of_people_lives_in",
+  "tenant_type",
+  "section_break_iuoxi",
+  "id_table",
+  "kyc_tab",
+  "phone_no",
+  "column_break_6m58d",
+  "id_proof",
+  "id_proof_2",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "tenant",
+   "fieldtype": "Link",
+   "in_standard_filter": 1,
+   "label": "Tenant",
+   "options": "Tenant Name"
+  },
+  {
+   "fieldname": "apartment",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Apartment",
+   "options": "Apartments"
+  },
+  {
+   "fieldname": "section_break_ahd1i",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "contract_expiry",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Contract Expiry"
+  },
+  {
+   "fieldname": "number_of_people_lives_in",
+   "fieldtype": "Int",
+   "label": "Number of People Lives in"
+  },
+  {
+   "fieldname": "tenant_type",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": " Tenant Type",
+   "options": "\n0wner\nRenter"
+  },
+  {
+   "fieldname": "section_break_iuoxi",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "id_table",
+   "fieldtype": "Table",
+   "label": "ID Table",
+   "options": "Tenant Table"
+  },
+  {
+   "fieldname": "kyc_tab",
+   "fieldtype": "Tab Break",
+   "label": "KYC"
+  },
+  {
+   "fieldname": "phone_no",
+   "fieldtype": "Data",
+   "label": "Phone No"
+  },
+  {
+   "fieldname": "column_break_6m58d",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "id_proof",
+   "fieldtype": "Attach Image",
+   "label": "ID Proof"
+  },
+  {
+   "fieldname": "id_proof_2",
+   "fieldtype": "Attach Image",
+   "label": "ID Proof 2"
+  },
+  {
+   "fetch_from": "apartment.maximum_allowed_registrations",
+   "fieldname": "maximum_allowed_registration",
+   "fieldtype": "Int",
+   "label": "Maximum Allowed Registration"
+  },
+  {
+   "default": "Active",
+   "fieldname": "tenant_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Status",
+   "options": "Active\nInactive"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Tenants",
+   "print_hide": 1,
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2023-05-12 17:36:12.916589",
+ "modified_by": "Administrator",
+ "module": "Flats",
+ "name": "Tenants",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
