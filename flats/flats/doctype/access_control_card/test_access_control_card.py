@@ -5,5 +5,5 @@
 from frappe.tests.utils import FrappeTestCase
 
 
-class TestDevicesDetails(FrappeTestCase):
+class TestAccessControlCard(FrappeTestCase):
 	pass

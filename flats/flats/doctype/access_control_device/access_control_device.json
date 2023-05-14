@@ -14,7 +14,10 @@
   "device_id",
   "user_name",
   "password",
-  "url"
+  "url",
+  "column_break_stxbk",
+  "status",
+  "check_device_state"
  ],
  "fields": [
   {
@@ -55,14 +58,31 @@
    "fieldname": "url",
    "fieldtype": "Data",
    "label": "URL"
+  },
+  {
+   "fieldname": "column_break_stxbk",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Inactive",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Active\nInactive"
+  },
+  {
+   "default": "1",
+   "fieldname": "check_device_state",
+   "fieldtype": "Check",
+   "label": "Check Device State"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-05-12 12:01:25.942231",
+ "modified": "2023-05-13 19:12:15.327094",
  "modified_by": "Administrator",
  "module": "Flats",
- "name": "Devices Details",
+ "name": "Access Control Device",
  "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
@@ -81,5 +101,14 @@
  ],
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": []
+ "states": [
+  {
+   "color": "Red",
+   "title": "Inactive"
+  },
+  {
+   "color": "Green",
+   "title": "Active"
+  }
+ ]
 }

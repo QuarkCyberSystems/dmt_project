@@ -50,7 +50,9 @@ def megvii_device_login(device_username, device_url, session_id, h_pass):
 
 # push the personal data to the device
 
-def create_personal_id():
+@frappe.whitelist()
+def create_personal_id(name):
+	frappe.errprint("iiiiiii")
 	device_username="admin"
 	device_password="222www"
 	device_url="http://hanayenoffice.ddns.net:53443"
@@ -59,12 +61,13 @@ def create_personal_id():
 	status = megvii_device_login(device_username, device_url, session_id, h_pass)
  
 	if status == 200:
-		doc=frappe.get_doc("Tenants", "DMT-23-Keerthi-00001")
+		doc=frappe.get_doc("Tenant", name)
 		tab=doc.id_table
 		for i in range(0, len(tab)):
-      
+	  
 			path=tab[i].get("tanent_photo")
-			file_name=frappe.get_all("File", filters={"attached_to_name":"DMT-23-Keerthi-00001", "file_url":tab[i].get("tanent_photo"), "attached_to_field":"tanent_photo"}, fields=["file_name"])
+			file_name=frappe.get_all("File", filters={"file_url":tab[i].get("tanent_photo"), "attached_to_field":"tanent_photo"}, fields=["file_name"])
+			frappe.errprint(file_name)
 			send_file=file_name[0].get("file_name")
    
 			media = get_file_path(send_file)
@@ -90,18 +93,30 @@ def create_personal_id():
 
 			response = requests.request("POST", url, headers=headers, data=payload)
 			json_data = json.loads(response.text)
-   
-			if(json_data['errors']):
-				err=json_data['errors']
-				doc=frappe.new_doc("Personal Error Log")
-				doc.update({
-					"person_name":tab[i].get("person_name"),
-					"card_number":tab[i].get("id_card_no"),
-					"message":err[0].get("detail")
-				})
-				doc.save(ignore_permissions=True)
-    
-			return json_data
+
+			try:
+				if(json_data['errors']):
+					frappe.msgprint("Some Imformation is Wrong. Check Personal Error Log")
+					err=json_data['errors']
+					doc=frappe.new_doc("Personal Error Log")
+					doc.update({
+						"person_name":tab[i].get("person_name"),
+						"card_number":tab[i].get("id_card_no"),
+						"message":err[0].get("detail")
+					})
+					doc.save(ignore_permissions=True)
+			except:
+				doc=frappe.get_doc("Apartments", doc.apartment)
+				doc.status="Occupied"
+				doc.save()
+				
+				for j in range(0, len(tab)):
+					
+					id_name=tab[j].get("id_card_no")
+					id_doc=frappe.get_doc("Access Control Card", id_name)
+					id_doc.status="Occupied"
+					id_doc.save()
+				return json_data
 
 	
  
@@ -173,22 +188,23 @@ def access_record():
 #  Create log for accept data
 
 def accept_data_log(json_data):
+	try:
+		person_id = json_data['person_id']
+		if(person_id):
+			timestamp=json_data['timestamp']
 	
-	person_id = json_data['person_id']
-	if(person_id):
-		timestamp=json_data['timestamp']
-  
-		date_time = datetime.datetime.fromtimestamp(timestamp)  
-		date=date_time.date()
-		time=date_time.time()
-		
-		doc=frappe.new_doc("Accept Data Log")
-		doc.update({
-			"person_id":person_id,
-			"person_name":json_data['person_name'],
-			"card_number":json_data['card_number'],
-			"date":date,
-			"time":time
-		})
-		doc.save(ignore_permissions=True)
-  
+			date_time = datetime.datetime.fromtimestamp(timestamp)  
+			date=date_time.date()
+			time=date_time.time()
+			
+			doc=frappe.new_doc("Accept Data Log")
+			doc.update({
+				"person_id":person_id,
+				"person_name":json_data['person_name'],
+				"card_number":json_data['card_number'],
+				"date":date,
+				"time":time
+			})
+			doc.save(ignore_permissions=True)
+	except:
+		frappe.errprint("llll")

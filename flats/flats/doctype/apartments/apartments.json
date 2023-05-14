@@ -12,6 +12,7 @@
   "building_name",
   "apartment_no",
   "column_break_4eg6x",
+  "status",
   "bedroom_count",
   "maximum_allowed_registrations"
  ],
@@ -39,25 +40,36 @@
   {
    "fieldname": "bedroom_count",
    "fieldtype": "Select",
-   "label": " Bedroom Count",
+   "label": "Number of  Bedroom",
    "options": "\n1\n2\n3\n4\n5"
   },
   {
+   "description": "ID Card or Facial Registration",
    "fieldname": "maximum_allowed_registrations",
    "fieldtype": "Select",
    "label": "Maximum Allowed Registrations",
    "options": "\n1\n2\n3\n4\n5"
+  },
+  {
+   "default": "Active",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Status",
+   "options": "Active\nInactive\nOccupied",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [
   {
    "group": "Tenant",
-   "link_doctype": "Tenants",
+   "link_doctype": "Tenant",
    "link_fieldname": "apartment"
   }
  ],
- "modified": "2023-05-12 17:36:30.550265",
+ "modified": "2023-05-14 10:47:19.904667",
  "modified_by": "Administrator",
  "module": "Flats",
  "name": "Apartments",
@@ -79,5 +91,21 @@
  ],
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": []
+ "states": [
+  {
+   "color": "Green",
+   "custom": 1,
+   "title": "Active"
+  },
+  {
+   "color": "Red",
+   "custom": 1,
+   "title": "Inactive"
+  },
+  {
+   "color": "Orange",
+   "custom": 1,
+   "title": "Occupied"
+  }
+ ]
 }

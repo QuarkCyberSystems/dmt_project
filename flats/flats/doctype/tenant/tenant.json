@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "DMT-.YY.-.tenant.-.#####",
+ "autoname": "DMT-.YY.-.#####",
  "creation": "2023-05-09 13:05:30.568871",
  "default_view": "List",
  "doctype": "DocType",
@@ -10,28 +10,29 @@
  "field_order": [
   "tenant",
   "apartment",
+  "apt",
+  "apt_no",
   "maximum_allowed_registration",
   "section_break_ahd1i",
   "tenant_status",
   "contract_expiry",
   "number_of_people_lives_in",
   "tenant_type",
-  "section_break_iuoxi",
-  "id_table",
   "kyc_tab",
   "phone_no",
   "column_break_6m58d",
   "id_proof",
   "id_proof_2",
-  "amended_from"
+  "amended_from",
+  "section_break_iuoxi",
+  "id_table"
  ],
  "fields": [
   {
    "fieldname": "tenant",
-   "fieldtype": "Link",
+   "fieldtype": "Data",
    "in_standard_filter": 1,
-   "label": "Tenant",
-   "options": "Tenant Name"
+   "label": "Tenant"
   },
   {
    "fieldname": "apartment",
@@ -75,13 +76,14 @@
   },
   {
    "fieldname": "kyc_tab",
-   "fieldtype": "Tab Break",
-   "label": "KYC"
+   "fieldtype": "Section Break",
+   "label": "Additional Details"
   },
   {
    "fieldname": "phone_no",
    "fieldtype": "Data",
-   "label": "Phone No"
+   "label": "Phone No",
+   "reqd": 1
   },
   {
    "fieldname": "column_break_6m58d",
@@ -101,34 +103,50 @@
    "fetch_from": "apartment.maximum_allowed_registrations",
    "fieldname": "maximum_allowed_registration",
    "fieldtype": "Int",
-   "label": "Maximum Allowed Registration"
+   "label": "Maximum Allowed Registration",
+   "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "default": "Active",
    "fieldname": "tenant_status",
    "fieldtype": "Select",
    "in_list_view": 1,
    "in_standard_filter": 1,
    "label": "Status",
-   "options": "Active\nInactive"
+   "options": "Active\nInactive",
+   "read_only": 1
   },
   {
    "fieldname": "amended_from",
    "fieldtype": "Link",
    "label": "Amended From",
    "no_copy": 1,
-   "options": "Tenants",
+   "options": "Tenant",
    "print_hide": 1,
    "read_only": 1
+  },
+  {
+   "fetch_from": "apartment.building_name",
+   "fieldname": "apt",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "apt"
+  },
+  {
+   "fetch_from": "apartment.apartment_no",
+   "fieldname": "apt_no",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "apt no"
   }
  ],
  "index_web_pages_for_search": 1,
- "is_submittable": 1,
  "links": [],
- "modified": "2023-05-12 17:36:12.916589",
+ "modified": "2023-05-13 21:54:01.368119",
  "modified_by": "Administrator",
  "module": "Flats",
- "name": "Tenants",
+ "name": "Tenant",
  "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [

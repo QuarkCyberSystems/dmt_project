@@ -102,12 +102,12 @@ app_license = "MIT"
 # ---------------
 # Hook on document methods and events
 
-doc_events = {
-	"Tenants": {
-		"before_submit": "flats.bio_metric.bio_login.create_personal_id"
+# doc_events = {
+# 	"Tenants": {
+# 		"before_submit": "flats.bio_metric.bio_login.create_personal_id"
 	
-	}
-}
+# 	}
+# }
 
 # Scheduled Tasks
 # ---------------
@@ -117,7 +117,7 @@ scheduler_events = {
 	# 	"flats.tasks.all"
 	# ],
 	"daily": [
-		"flats.flats.doctype.tenants.tenants.contract_expiry"
+		"flats.flats.doctype.tenant.tenant.contract_expiry"
 	],
 	"hourly": [
 		"flats.bio_metric.bio_login.access_record"
