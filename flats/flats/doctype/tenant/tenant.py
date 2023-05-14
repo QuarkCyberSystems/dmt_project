@@ -32,7 +32,7 @@ class Tenant(Document):
             id_doc.save()
      
 def contract_expiry():
-    doc=frappe.get_all("Tenant", filters={"tenant_status":"Active"}, fields=["name", "contract_expiry"])
+    doc=frappe.get_all("Tenant", filters={"status":"Active"}, fields=["name", "contract_expiry"])
     for i in doc:
         ex_day=str(i.get("contract_expiry"))
         day=str(today())
@@ -53,5 +53,5 @@ def contract_expiry():
             doc3.status="Active"
             doc3.save()
             
-            doc2.tenant_status="Inactive"
+            doc2.status="Inactive"
             doc2.save()

@@ -1,40 +1,27 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "field:name1",
- "creation": "2023-05-12 11:17:12.780757",
+ "creation": "2023-05-14 16:28:44.860844",
  "default_view": "List",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "name1",
-  "t_status"
+  "animal"
  ],
  "fields": [
   {
-   "fieldname": "name1",
+   "fieldname": "animal",
    "fieldtype": "Data",
-   "label": "Name",
-   "unique": 1
-  },
-  {
-   "default": "Active",
-   "fieldname": "t_status",
-   "fieldtype": "Select",
-   "in_list_view": 1,
-   "in_standard_filter": 1,
-   "label": "Status",
-   "options": "Active\nInactive\nOccupied"
+   "label": "animal"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-05-13 08:38:15.368051",
+ "modified": "2023-05-14 16:28:44.860844",
  "modified_by": "Administrator",
  "module": "Flats",
- "name": "Tenant Name",
- "naming_rule": "Expression (old style)",
+ "name": "hi",
  "owner": "Administrator",
  "permissions": [
   {

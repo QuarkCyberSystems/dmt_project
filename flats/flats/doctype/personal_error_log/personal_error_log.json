@@ -10,6 +10,9 @@
  "field_order": [
   "person_name",
   "card_number",
+  "epoch_time",
+  "date",
+  "time",
   "column_break_xaxqa",
   "message"
  ],
@@ -17,7 +20,7 @@
   {
    "fieldname": "person_name",
    "fieldtype": "Data",
-   "label": "Person Name"
+   "label": "Tenant Name"
   },
   {
    "fieldname": "card_number",
@@ -32,11 +35,27 @@
    "fieldname": "message",
    "fieldtype": "Small Text",
    "label": "Message"
+  },
+  {
+   "fieldname": "epoch_time",
+   "fieldtype": "Data",
+   "label": "Epoch time"
+  },
+  {
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Device Date"
+  },
+  {
+   "fieldname": "time",
+   "fieldtype": "Time",
+   "label": "Device time"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-05-12 22:50:06.391550",
+ "modified": "2023-05-14 15:47:02.545004",
  "modified_by": "Administrator",
  "module": "Flats",
  "name": "Personal Error Log",

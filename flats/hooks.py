@@ -63,9 +63,10 @@ app_license = "MIT"
 # Installation
 # ------------
 
-# before_install = "flats.install.before_install"
+# before_install = "flats.bio_metric.bio_login.set_third_party_push"
 # after_install = "flats.install.after_install"
 
+after_migrate = "flats.bio_metric.bio_login.set_third_party_push"
 # Uninstallation
 # ------------
 
